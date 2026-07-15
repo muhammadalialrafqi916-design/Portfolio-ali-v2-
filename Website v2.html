@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Interaktif | Muhammad Ali Al Rafqi</title>
+    <style>
+        /* --- RESET & FONT --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* --- BACKGROUND ANIMASI DINAMIS --- */
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- ELEMEN SHAPES MENGAMBANG (TIDAK KAKU) --- */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: -1;
+            animation: float 6s infinite ease-in-out alternate;
+        }
+        .shape-1 {
+            width: 300px; height: 300px;
+            background: #ff007f;
+            top: 10%; left: -10%;
+        }
+        .shape-2 {
+            width: 400px; height: 400px;
+            background: #00f2fe;
+            bottom: 20%; right: -10%;
+            animation-delay: 2s;
+        }
+        .shape-3 {
+            width: 250px; height: 250px;
+            background: #a3e635;
+            top: 40%; left: 40%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        /* --- NAVBAR GLASSMORPHISM --- */
+        .top-nav {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 20px;
+            margin: 10px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff007f, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-menu {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        /* --- MENU DROPDOWN --- */
+        .menu-tersembunyi {
+            position: fixed;
+            top: 80px;
+            right: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 999;
+        }
+        .menu-tersembunyi.tampil {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .menu-item {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 10px;
+            transition: 0.3s ease;
+        }
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            padding-left: 25px;
+            color: #00f2fe;
+        }
+
+        /* --- HEADER & KONTEN UTAMA --- */
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+        }
+        .typewriter {
+            font-size: 1.2rem;
+            color: #a3e635;
+            min-height: 30px;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto 50px;
+            padding: 0 20px;
+        }
+
+        /* Styling Tiap Seksi */
+        .section-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 242, 254, 0.2);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #00f2fe;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        /* Badges Animasi */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .badge {
+            background: linear-gradient(135deg, #ff007f, #7209b7);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+        .badge:hover {
+            transform: scale(1.1) rotate(-3deg);
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+        }
+
+        /* Tombol Sosial Media */
+        .btn-interaktif {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-interaktif::before {
+            content: "";
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s ease;
+        }
+        .btn-interaktif:hover::before {
+            left: 100%;
+        }
+        .btn-interaktif:hover {
+            background: #fff;
+            color: #0f0c29;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255,255,255,0.2);
+        }
+
+        /* Form Kontak & Info Grid */
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #00f2fe;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+        }
+        .submit-btn {
+            background: linear-gradient(45deg, #ff007f, #ff6b9e);
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .submit-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 0, 127, 0.4);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .info-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        .info-card .title { display: block; font-size: 0.8rem; color: #a3e635; margin-bottom: 5px;}
+
+        /* --- ANIMASI JAVASCRIPT (SCROLL REVEAL) CLASS --- */
+        .hidden-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .show-scroll {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span>🖼️</span> Ali Rafqi
+        </div>
+        <button class="nav-menu">☰</button>
+    </nav>
+    <div id="kotak-menu" class="menu-tersembunyi">
+        <a href="#tentang" class="menu-item">Tentang Saya</a>
+        <a href="#keahlian" class="menu-item">Keahlian Dasar</a>
+        <a href="#minat" class="menu-item">Minat & Aktivitas</a>
+        <a href="#kontak" class="menu-item">Kontak</a>
+    </div>
+
+    <header>
+        <h1>Muhammad Ali Al Rafqi</h1>
+        <div class="typewriter" id="typewriter-text"></div>
+    </header>
+
+    <div class="container">
+        
+        <div class="section-card hidden-scroll" id="tentang">
+            <h2>Tentang Saya</h2>
+            <p>Saya adalah seorang pelajar kelas 10 yang berbasis di Pekanbaru. Saya memiliki ketertarikan mendalam pada teknologi, optimasi sistem, desain grafis, serta eksplorasi kode web secara mandiri untuk menciptakan pengalaman digital yang menarik.</p>
+        </div>
+
+        <div class="section-card hidden-scroll" id="keahlian">
+            <h2>Keahlian Dasar</h2>
+            <div class="badge-container">
+                <span class="badge">🎨 Desain Grafis</span>
+                <span class="badge">🎬 Video Editing</span>
+                <span class="badge">💻 HTML, CSS & JS</span>
+                <span class="badge">⚙️ Optimasi Sistem</span>
+            </div>
+        </div>
+
+        <div class="section-card hidden-scroll" id="minat">
+            <h2>Minat & Aktivitas</h2>
+            <div class="badge-container">
+                <span class="badge">🚀 Penjelajahan Luar Angkasa</span>
+                <span class="badge">🎮 Pengembangan Roblox</span>
+                <span class="badge">🧬 Sains & Biologi</span>
+                <span class="badge">🌸 Anime & Kreativitas</span>
+            </div>
+        </div>
+
+        <div class="section-card hidden-scroll">
+            <h2>Media Sosial</h2>
+            <div class="badge-container">
+                <a href="https://www.tiktok.com/@muhammadalialrafq?_r=1&_t=ZS-97yNz7dbrjp" target="_blank" class="btn-interaktif">🎵 TikTok</a>
+                <a href="https://wa.me/6285375204334" class="btn-interaktif" target="_blank">💬 WhatsApp</a>
+                <a href="https://www.instagram.com/ali__yau?igsh=MXd4eGhsN3ZqeHBmZQ==" class="btn-interaktif" target="_blank">📸 Instagram</a>
+                <a href="https://youtube.com/@muhammadalialrafqi5618?si=ytji26k2Zj6Qz7cW" class="btn-interaktif" target="_blank">▶️ YouTube</a>
+            </div>
+        </div>
+
+        <div class="section-card hidden-scroll" id="kontak">
+            <h2>Let's Connect 🚀</h2>
+            <p style="margin-bottom: 20px; color: #ccc;">Mau kolaborasi, ngobrol, atau just say hi? Gas aja!</p>
+            
+            <form action="https://formsubmit.co/muhammadali.alrafqi916@gmail.com" method="POST" target="_blank" onsubmit="alert('Pesan sedang diproses! 🚀');">
+                <input type="hidden" name="_captcha" value="false">
+                <div class="form-group">
+                    <input type="text" name="nama" placeholder="Nama kamu" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="pesan" placeholder="Tulis pesan kamu di sini..." rows="4" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">✈ KIRIM PESAN SEKARANG</button>
+            </form>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <span class="title">✉ Email</span>
+                    <strong>muhammadali...</strong>
+                </div>
+                <div class="info-card">
+                    <span class="title">📍 Lokasi</span>
+                    <strong>Pekanbaru, ID</strong>
+                </div>
+                <div class="info-card">
+                    <span class="title">🕒 Response</span>
+                    <strong>< 24 jam</strong>
+                </div>
+                <div class="info-card">
+                    <span class="title">❤️ Server</span>
+                    <strong style="color: #a3e635;">Aktif Berjalan</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Logika Menu Dropdown (Mencegah klik bocor)
+        const tombolMenu = document.querySelector('.nav-menu');
+        const kotakMenu = document.getElementById('kotak-menu');
+
+        tombolMenu.addEventListener('click', function(e) {
+            kotakMenu.classList.toggle('tampil');
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!kotakMenu.contains(e.target) && !tombolMenu.contains(e.target)) {
+                kotakMenu.classList.remove('tampil');
+            }
+        });
+
+        // 2. Efek Mesin Tik (Typewriter) untuk peran/jabatan
+        const textToType = "Junior High School Student | Tech & Space Enthusiast";
+        const typingElement = document.getElementById('typewriter-text');
+        let index = 0;
+
+        function typeWriter() {
+            if (index < textToType.length) {
+                typingElement.innerHTML += textToType.charAt(index);
+                index++;
+                setTimeout(typeWriter, 50); // Kecepatan mengetik
+            } else {
+                // Hapus dan ketik ulang setelah beberapa detik (Opsional)
+                setTimeout(() => {
+                    typingElement.innerHTML = '';
+                    index = 0;
+                    typeWriter();
+                }, 5000);
+            }
+        }
+        // Jalankan efek saat halaman dimuat
+        window.onload = typeWriter;
+
+        // 3. Efek Scroll Reveal menggunakan Intersection Observer
+        const observerOptions = {
+            threshold: 0.1, // Elemen muncul saat 10% terlihat di layar
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-scroll');
+                    observer.unobserve(entry.target); // Animasi hanya berjalan sekali
+                }
+            });
+        }, observerOptions);
+
+        // Pantau semua elemen yang memiliki class hidden-scroll
+        document.querySelectorAll('.hidden-scroll').forEach((el) => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
