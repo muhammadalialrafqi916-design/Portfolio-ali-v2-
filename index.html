@@ -335,7 +335,7 @@
         .modal-overlay.tampil { opacity: 1; visibility: visible; }
         .modal-container {
             background: linear-gradient(135deg, #1e1b4b, #2e1065);
-            width: 95%; max-width: 900px; height: 85vh; border-radius: 20px;
+            width: 95%; max-width: 1000px; height: 85vh; border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 15px 50px rgba(0,0,0,0.5);
             display: flex; flex-direction: column; overflow: hidden;
             transform: scale(0.9); transition: all 0.3s ease;
@@ -356,8 +356,45 @@
             padding: 8px 16px; border-radius: 8px; cursor: pointer; white-space: nowrap; transition: 0.3s;
         }
         .btn-tab:hover, .btn-tab.aktif { background: #00f2fe; color: #0f0c29; box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); }
-        .iframe-wrapper { flex: 1; background: #ffffff; border-radius: 10px; overflow: hidden; }
+        
+        .iframe-wrapper { flex: 1; background: #ffffff; border-radius: 10px; overflow: hidden; position: relative; }
         #web-viewer { width: 100%; height: 100%; border: none; }
+
+        /* STYLING UNTUK FITUR LIVE CODE EDITOR */
+        #live-editor-container {
+            display: none; 
+            width: 100%; 
+            height: 100%; 
+            flex-direction: column;
+        }
+        @media (min-width: 768px) {
+            #live-editor-container {
+                flex-direction: row;
+            }
+        }
+        #live-code-input {
+            flex: 1;
+            padding: 15px;
+            background: #1e1e1e;
+            color: #00f2fe;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            border: none;
+            resize: none;
+        }
+        #live-code-input:focus { outline: none; }
+        #live-code-output {
+            flex: 1;
+            background: #ffffff;
+            border: none;
+            border-top: 2px solid #302b63;
+        }
+        @media (min-width: 768px) {
+            #live-code-output {
+                border-top: none;
+                border-left: 2px solid #302b63;
+            }
+        }
 
         .hidden-scroll { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
         .show-scroll { opacity: 1; transform: translateY(0); }
@@ -506,9 +543,17 @@
                     <button class="btn-tab" onclick="bukaFile('Latihanlist.html', this)">📝 Tugas bikin list</button>
                     <button class="btn-tab" onclick="bukaFile('Table.html', this)">📊 Tugas Tabel</button>
                     <button class="btn-tab" onclick="bukaFile('portfolio.html', this)">website pertama</button>
+                    <!-- TOMBOL LIVE CODE BARU -->
+                    <button class="btn-tab" onclick="bukaLiveEditor(this)">⚡ Live Code Editor</button>
                 </div>
                 <div class="iframe-wrapper">
                     <iframe id="web-viewer" src=""></iframe>
+                    
+                    <!-- KONTINER LIVE EDITOR BARU -->
+                    <div id="live-editor-container">
+                        <textarea id="live-code-input" placeholder="<!-- Ketik kode HTML/CSS kamu di sini... -->&#10;<h1>Hello World</h1>&#10;<style>h1 { color: #00f2fe; }</style>"></textarea>
+                        <iframe id="live-code-output"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -563,12 +608,18 @@
 
         document.querySelectorAll('.hidden-scroll').forEach((el) => { observer.observe(el); });
 
-        // Logika Modal Pop-up Proyek HTML
+        // Logika Modal Pop-up Proyek HTML & Live Code
         const modalWeb = document.getElementById('modal-proyek-web');
         const btnBuka = document.getElementById('btn-buka-proyek');
         const btnTutup = document.querySelector('.btn-close');
+        
         const iframeViewer = document.getElementById('web-viewer');
         const tabButtons = document.querySelectorAll('.btn-tab');
+        
+        // Element Live Editor
+        const liveEditorContainer = document.getElementById('live-editor-container');
+        const liveCodeInput = document.getElementById('live-code-input');
+        const liveCodeOutput = document.getElementById('live-code-output');
 
         btnBuka.addEventListener('click', () => {
             modalWeb.classList.add('tampil');
@@ -577,14 +628,41 @@
         btnTutup.addEventListener('click', () => {
             modalWeb.classList.remove('tampil');
             iframeViewer.src = "";
+            iframeViewer.style.display = "block";
+            liveEditorContainer.style.display = "none";
             tabButtons.forEach(btn => btn.classList.remove('aktif'));
         });
 
         function bukaFile(namaFile, elemenTombol) {
+            iframeViewer.style.display = "block";
+            liveEditorContainer.style.display = "none";
             iframeViewer.src = namaFile;
             tabButtons.forEach(btn => btn.classList.remove('aktif'));
             elemenTombol.classList.add('aktif');
         }
+
+        // Fungsi baru untuk menjalankan Live Editor
+        function bukaLiveEditor(elemenTombol) {
+            iframeViewer.style.display = "none";
+            liveEditorContainer.style.display = "flex";
+            iframeViewer.src = "";
+            tabButtons.forEach(btn => btn.classList.remove('aktif'));
+            elemenTombol.classList.add('aktif');
+            
+            // Render tulisan awal
+            renderLiveCode();
+        }
+
+        // Render input ke iframe Live Code
+        function renderLiveCode() {
+            const outputElement = liveCodeOutput.contentWindow.document;
+            outputElement.open();
+            outputElement.write(liveCodeInput.value);
+            outputElement.close();
+        }
+
+        // Event saat mengetik di textarea
+        liveCodeInput.addEventListener('input', renderLiveCode);
     </script>
 </body>
 </html>
