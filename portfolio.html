@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Muhammad Ali Al Rafqi</title>
+    <style>
+        /* Pengaturan Dasar & Latar Belakang Ungu */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background-color: #1a1226; /* Warna ungu gelap */
+            color: #f0ebf7; 
+            position: relative;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- ELEMEN GRAFIS ABSTRAK (CSS Shapes) --- */
+        .shape-circle-1 {
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 250px;
+            height: 250px;
+            background: rgba(157, 78, 221, 0.2);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .shape-circle-2 {
+            position: fixed;
+            bottom: -100px;
+            right: -100px;
+            width: 350px;
+            height: 350px;
+            background: rgba(114, 9, 183, 0.15);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .shape-box-1 {
+            position: absolute;
+            top: 40%;
+            right: 5%;
+            width: 60px;
+            height: 60px;
+            background: transparent;
+            border: 4px solid rgba(255, 0, 127, 0.2);
+            border-radius: 8px;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .shape-box-2 {
+            position: absolute;
+            bottom: 15%;
+            left: 8%;
+            width: 40px;
+            height: 40px;
+            background: rgba(90, 24, 154, 0.3);
+            border-radius: 4px;
+            transform: rotate(15deg);
+            z-index: -1;
+        }
+
+        /* --- STRUKTUR KONTEN --- */
+        header { 
+            background: linear-gradient(135deg, #3c096c, #5a189a); 
+            color: #fff; 
+            padding: 40px 20px; 
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        h1 { margin: 0 0 10px; font-size: 2.5em; letter-spacing: 1px; }
+        h2 { border-bottom: 2px solid #7209b7; padding-bottom: 10px; margin-top: 30px; color: #c77dff; }
+        p { line-height: 1.6; }
+
+        .container { 
+            max-width: 800px; 
+            margin: 40px auto; 
+            background: rgba(36, 0, 70, 0.6); 
+            padding: 30px; 
+            border-radius: 15px; 
+            backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .interests, .skills, .social-media { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        
+        /* Badge Standar */
+        .badge { 
+            background-color: #7209b7; 
+            color: #fff; 
+            padding: 8px 18px; 
+            border-radius: 20px; 
+            font-size: 0.9em; 
+            font-weight: 500;
+            border: 1px solid #9d4ede;
+            transition: 0.3s;
+        }
+        
+        .badge:hover {
+            background-color: #9d4ede;
+            transform: translateY(-2px);
+        }
+
+        /* Tombol TikTok Khusus berlatar Putih */
+        .tiktok-btn {
+            background-color: #ffffff;
+            color: #1a1226;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+            transition: 0.3s;
+        }
+
+        .tiktok-btn:hover {
+            background-color: #f0ebf7;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.2);
+        }     /* --- TAMBAHAN KODE BARU (NAVBAR, CONTACT, INFO GRID) --- */
+    
+    /* Navbar Atas */
+    .top-nav {
+        background-color: #ffe600; /* Kuning */
+        color: #000;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 2px solid #000;
+        border-radius: 10px;
+        margin: 10px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: 2px 2px 0px #000;
+    }
+    .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    .nav-menu {
+        background: #fff;
+        border: 2px solid #000;
+        border-radius: 5px;
+        padding: 5px 10px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Bagian Let's Connect */
+    .contact-section { margin-top: 50px; text-align: left; }
+    .contact-badge {
+        background: #ff6b9e;
+        color: #fff;
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+        border: 2px solid #000;
+    }
+    .contact-section h2 { border: none; margin-bottom: 5px; padding: 0; }
+    .contact-card {
+        background: #fff;
+        color: #000;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 20px;
+        border: 2px solid #000;
+        box-shadow: 4px 4px 0px #000;
+    }
+    .contact-card h3 { border: none; margin-top: 0; color: #000; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9rem; }
+    .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #000;
+        border-radius: 8px;
+        background-color: #fff8e1;
+        font-family: inherit;
+        box-sizing: border-box;
+    }
+    .submit-btn {
+        width: 100%;
+        background: #ff6b9e;
+        color: #fff;
+        border: 2px solid #000;
+        padding: 12px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 2px 2px 0px #000;
+    }
+
+    /* Grid Biodata / Info Server */
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-top: 30px;
+    }
+    .info-card {
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid #000;
+        color: #000;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 3px 3px 0px #000;
+        text-align: left;
+    }
+    .info-card span.title { font-size: 0.8rem; margin-bottom: 5px; font-weight: bold; opacity: 0.8; }
+    .info-card strong { font-size: 0.9rem; word-break: break-all; }
+    
+    .card-red { background-color: #ff4d4d; }
+    .card-blue { background-color: #4da6ff; }
+    .card-green { background-color: #a6ff4d; }
+    .card-white { background-color: #ffffff; }
+
+    @media (max-width: 500px) {
+        .info-grid { grid-template-columns: 1fr; } /* Menyusun ke bawah jika layar HP kecil */
+    }
+/* --- CSS UNTUK MENU DROPDOWN --- */
+.menu-tersembunyi {
+    display: none; /* Sembunyikan dari awal */
+    flex-direction: column;
+    position: absolute;
+    top: 70px; /* Jarak dari atas, sesuaikan jika kurang pas */
+    right: 20px;
+    background-color: #fff; /* Warna background menu */
+    border: 3px solid #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px #1a1a1a; /* Gaya Neo-brutalism */
+    padding: 10px;
+    z-index: 999;
+    min-width: 200px;
+}
+
+/* Saat tombol diklik, class ini ditambahkan agar menu muncul */
+.menu-tersembunyi.tampil {
+    display: flex;
+}
+
+.menu-item {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-weight: 700;
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+    background-color: #a3e635; /* Warna saat disentuh/hover */
+    border: 2px solid #1a1a1a;
+}
+/* --- AKHIR CSS MENU --- */
+/* ==================== CSS FOOTER PINK GAYA UPTODOWN ==================== */
+.footer-pink {
+    background-color: #ff66b2; /* Warna pink cerah yang kuat */
+    border-top: 4px solid #1a1a1a; /* Garis pembatas tebal gaya neo-brutalist */
+    padding: 50px 20px;
+    margin-top: 60px;
+    color: #1a1a1a;
+}
+
+.footer-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-about {
+    flex: 1.5;
+    min-width: 280px;
+}
+
+.footer-about h3 {
+    font-size: 26px;
+    font-weight: 900;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-about p {
+    font-size: 14.5px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.footer-about .copyright {
+    font-size: 12px;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+.footer-socials {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-socials h4 {
+    font-size: 18px;
+    font-weight: 850;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.social-box {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-sosmed {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    padding: 12px 18px;
+    border: 3px solid #1a1a1a;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 14px;
+    width: fit-content;
+    min-width: 180px;
+    box-shadow: 4px 4px 0px #1a1a1a;
+    transition: all 0.15s ease-in-out;
+}
+
+.btn-sosmed svg {
+    flex-shrink: 0;
+}
+
+/* Efek Gerak & Bayangan Khas Saat Tombol Disentuh (Hover) */
+.btn-sosmed:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0px #1a1a1a;
+}
+
+/* Warna Hover Khusus Masing-Masing Sosmed */
+.btn-sosmed.instagram:hover {
+    background-color: #fccc63; /* Kuning-oranye Instagram */
+}
+
+.btn-sosmed.tiktok:hover {
+    background-color: #00f2fe; /* Biru Neon TikTok */
+}
+
+.btn-sosmed.youtube:hover {
+    background-color: #ff0000; /* Merah YouTube */
+    color: #ffffff;
+}
+
+/* Responsif untuk Layar HP */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: left;
+    }
+    .btn-sosmed {
+        width: 100%; /* Tombol melebar penuh di HP agar mudah diklik */
+    }
+}
+/* --- STYLE KOTAK PROYEK BARU --- */
+.project-promo-card {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin-top: 30px;
+}
+
+.project-promo-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 242, 254, 0.4);
+    box-shadow: 0 20px 45px rgba(0, 242, 254, 0.25);
+}
+
+.promo-tag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #ff007f;
+    background: rgba(255, 0, 127, 0.15);
+    padding: 6px 15px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 0, 127, 0.3);
+}
+
+.promo-desc {
+    font-size: 0.95rem;
+    color: #d1d1f7;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+/* --- STYLE TOMBOL UTAMA --- */
+.btn-lihat-project {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #ff007f, #00f2fe);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    padding: 16px 35px;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(255, 0, 127, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efek Kilat Cahaya pada Tombol */
+.btn-lihat-project::before {
+    content: "";
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: 0.6s ease;
+}
+
+.btn-lihat-project:hover::before {
+    left: 100%;
+}
+
+.btn-lihat-project:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 30px rgba(0, 242, 254, 0.5);
+}
+
+/* Animasi Ikon Panah */
+.arrow-icon-promo {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.btn-lihat-project:hover .arrow-icon-promo {
+    transform: translateX(6px);
+}
+w
+        /* --- CSS UNTUK TAMPILAN HITUNGAN MUNDUR --- */
+.countdown-container {
+    margin: 20px 0;
+    text-align: center;
+}
+.countdown-title {
+    font-size: 0.85rem;
+    color: #a3e635; /* Warna hijau neon biar match dengan status server */
+    font-weight: 600;
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+.time-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 12px;
+    border-radius: 12px;
+    min-width: 60px;
+    backdrop-filter: blur(5px);
+}
+.time-box span {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #00f2fe; /* Angka warna biru neon */
+    display: block;
+}
+.time-box label {
+    font-size: 0.65rem;
+    color: #ccc;
+    display: block;
+    margin-top: 2px;
+}
+
+    </style>
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-brand">
+            <span style="font-size: 1.5rem;">🖼️</span>
+            <span>Ali</span>
+        </div>
+        <button class="nav-menu">☰</button>
+    </nav>
+    <div id="kotak-menu" class="menu-tersembunyi">
+    <a href="#tentang" class="menu-item">Tentang Saya</a>
+    <a href="#keahlian" class="menu-item">Keahlian Dasar</a>
+    <a href="#minat" class="menu-item">Minat & Aktivitas</a>
+    <a href="#sosmed" class="menu-item">Media Sosial</a>
+</div>
+    
+</div>
+
+
+<div class="shape-circle-1"></div>
+<div class="shape-circle-2"></div>
+<div class="shape-box-1"></div>
+<div class="shape-box-2"></div>
+
+<header>
+    <h1>Muhammad Ali Al Rafqi</h1>
+    <p>Junior High School Student & Tech Enthusiast</p>
+</header>
+
+<div class="container">
+    <h2 id="tentang">Tentang Saya</h2>
+    <p>Saya adalah seorang pelajar kelas 10 yang berbasis di Pekanbaru. Saya memiliki ketertarikan mendalam pada teknologi, optimasi sistem, desain grafis, serta eksplorasi kode web secara mandiri.</p>
+
+    <h2 id="Keahlian">Keahlian Dasar</h2>
+    <div class="skills">
+        <span class="badge">Desain Grafis</span>
+        <span class="badge">Video Editing</span>
+        <span class="badge">Pengembangan Web (HTML & CSS)</span>
+    </div>
+
+    <h2 id="Minat">Minat & Aktivitas</h2>
+    <div class="interests">
+        <span class="badge">Penjelajahan Luar Angkasa</span>
+        <span class="badge">Pengembangan Platform (Roblox)</span>
+        <span class="badge">Sains & Evolusi Biologi</span>
+        <span class="badge">Anime & Kreativitas Digital</span>
+    </div>
+
+    <h2 id="sosmed">Media Sosial</h2>
+    <div class="social-media">
+        <a href="https://www.tiktok.com/@muhammadalialrafq?_r=1&_t=ZS-97yNz7dbrjp" target="_blank" class="tiktok-btn">
+            🎵 Ikuti saya di TikTok
+        </a>
+            <a href="https://wa.me/6285375204334" class="tiktok-btn" target="_blank">
+        💬 Hubungi WhatsApp
+    </a>
+    <a href="https://www.instagram.com/ali__yau?igsh=MXd4eGhsN3ZqeHBmZQ==" class="tiktok-btn" target="_blank">
+        📸 Ikuti Instagram
+    </a>
+
+        <div class="info-grid">
+            <div class="info-card card-red">
+                <span class="title">✉ Email</span>
+                <strong>@muhammadali.alrafqi916@gmail.com</strong>
+            </div>
+            <div class="info-card card-blue">
+                <span class="title">📍 Lokasi</span>
+                <strong>Palas, Pekanbaru, Indonesia</strong>
+            </div>
+            <div class="info-card card-green">
+                <span class="title">🕒 Response</span>
+                <strong>< 24 jam</strong>
+            </div>
+            <div class="info-card card-white">
+                <span class="title">❤️ Status Server</span>
+                <strong>Aktif</strong>
+            </div>
+<!-- KOTAK MY PROJECT YANG SUDAH BERSIH -->
+<div class="project-promo-card hidden-scroll" id="projects">
+    <span class="promo-tag">My Project 🔥</span>
+    <p class="promo-desc">Saya baru saja merilis pembaruan portofolio interaktif versi terbaru dengan UI yang lebih memukau, animasi halus, dan responsivitas yang dioptimalkan!</p>
+
+    <a href="https://muhammadalialrafqi916-design.github.io/Portfolio-ali-v2-/" class="btn-lihat-project" target="_blank">
+        Lihat Projek Saya
+        <svg class="arrow-icon-promo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+    </a>
+</div>
+<footer id="sosmed" class="footer-pink">
+    <div class="footer-container">
+        
+        <div class="footer-about">
+            <h3>Portofolio Ali >_ </h3>
+            <p>Selamat datang di halaman resmi saya! Di sini saya membagikan karya, catatan belajar, hobi, kreativitas, serta hal-hal menarik yang sedang saya kembangkan. Terus pantau perkembangannya ya!</p>
+            <p class="copyright">© 2026 Muhammad Ali. Dibuat dengan penuh semangat.</p>
+        </div>
+
+        <div class="footer-socials">
+            <h4>Ikuti Saya Di Sini</h4>
+            <div class="social-box">
+                
+                <a href="https://www.instagram.com/ali__yau?igsh=MXd4eGhsN3ZqeHBmZQ==" target="_blank" class="btn-sosmed instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.444-.048-3.298c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/>
+                    </svg>
+                    Instagram
+                </a>
+
+                <a href="https://www.tiktok.com/@muhammadalialrafq?_r=1&_t=ZS-981C5N8e6M9" target="_blank" class="btn-sosmed tiktok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M9 0h1.98c.144.32.34.61.58.85.17.17.36.3.56.4.28.14.59.2.91.2V3.4c-.72 0-1.43-.18-2.07-.52-.3-.15-.57-.35-.81-.6-.25-.25-.45-.55-.58-.87C9.45 1.13 9.38.72 9.38 0zm-3.79 5.02c-.85 0-1.68.34-2.28.95s-.94 1.43-.94 2.28c0 .85.34 1.68.95 2.28s1.43.94 2.28.94c.85 0 1.68-.34 2.28-.95s.94-1.43.94-2.28h-1.89c0 .35-.14.69-.39.94s-.59.39-.94.39-.69-.14-.94-.39-.39-.59-.39-.94.14-.69.39-.94.59-.39.94-.39c.35 0 .69.14.94.39s.39.59.39.94h1.89c0-.85-.34-1.68-.95-2.28s-1.43-.95-2.28-.95z"/>
+                    </svg>
+                    TikTok
+                </a>
+
+                <a href="https://youtube.com/@muhammadalialrafqi5618?si=ytji26k2Zj6Qz7cW" target="_blank" class="btn-sosmed youtube">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8.051 1.999h-.089c-.829.021-2.335.03-3.052.058-1.57.058-2.536.851-2.733 2.404-.1 1.13-.175 2.385-.175 3.538s.075 2.41.175 3.538c.197 1.553 1.163 2.345 2.733 2.404.717.028 2.223.037 3.052.058h.089c.829-.021 2.335-.03 3.052-.058 1.57-.058 2.536-.851 2.733-2.404.1-1.13.175-2.385.175-3.538s-.075-2.41-.175-3.538c-.197-1.553-1.163-2.345-2.733-2.404-.717-.028-2.223-.037-3.052-.058zm-1.2 7.158V5.845L10.51 8l-3.659 1.157z"/>
+                    </svg>
+                    YouTube
+                </a>
+                
+            </div>
+        </div>
+    </div>
+</footer>
+                    <script>
+    const tombolMenu = document.querySelector('.nav-menu');
+    const kotakMenu = document.getElementById('kotak-menu');
+
+    // Saat tombol diklik, munculkan atau hilangkan menu
+    tombolMenu.addEventListener('click', function(e) {
+        kotakMenu.classList.toggle('tampil');
+        e.stopPropagation(); // Mencegah klik bocor
+    });
+
+    // Menutup menu jika user mengklik di luar kotak menu
+    document.addEventListener('click', function(e) {
+        if (!kotakMenu.contains(e.target) && !tombolMenu.contains(e.target)) {
+            kotakMenu.classList.remove('tampil');
+        }
+    });
+</script>
+
+</body>
+</html>
