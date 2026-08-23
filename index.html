@@ -398,6 +398,40 @@
 
         .hidden-scroll { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
         .show-scroll { opacity: 1; transform: translateY(0); }
+
+        /* --- FOOTER SEDERHANA --- */
+        footer {
+            background: rgba(48, 43, 99, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .footer-title {
+            font-size: 1rem;
+            color: #b0a8d6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .footer-creator {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .footer-message {
+            font-size: 0.95rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -492,7 +526,6 @@
                     <strong>< 24 jam</strong>
                     </div>
                 
-                <!-- BAGIAN 'BELUM ADA' DIUBAH JADI TOMBOL 'ADA' -->
                 <div class="info-card">
                     <span class="title">​​📁 proyek_pengembangan_web​📋</span>
                     <strong id="btn-buka-proyek">klik disini</strong>
@@ -526,6 +559,13 @@
         </div>
     </div>
 
+    <!-- BAGIAN FOOTER SEDERHANA -->
+    <footer>
+        <div class="footer-title">Ali Rafqi Software Engineer</div>
+        <div class="footer-creator">Muhammad Ali Al Rafqi</div>
+        <p class="footer-message">Saya baru belajar membuat website sederhana serta belajar UI/UX design. Saya akan belajar lebih giat untuk bisa mencapai cita-cita.</p>
+    </footer>
+
     <!-- MODAL POP-UP UNTUK MENJALANKAN FILE HTML -->
     <div id="modal-proyek-web" class="modal-overlay">
         <div class="modal-container">
@@ -535,9 +575,7 @@
             </div>
             <div class="modal-body">
                 <div class="project-tabs">
-                    <!-- TOMBOL LIVE CODE BARU DI PINDAH KE PALING KIRI -->
                     <button class="btn-tab" onclick="bukaLiveEditor(this)">📂>_ Live Code Editor</button>
-                    <!-- Ubah nama file di bawah ini sesuai nama file HTML tugasmu -->
                     <button class="btn-tab" onclick="bukaFile('Latihanlist.html', this)">📝 Tugas bikin list</button>
                     <button class="btn-tab" onclick="bukaFile('Table.html', this)">📊 Tugas Tabel</button>
                     <button class="btn-tab" onclick="bukaFile('portfolio.html', this)">website pertama</button>
@@ -545,7 +583,6 @@
                 <div class="iframe-wrapper">
                     <iframe id="web-viewer" src=""></iframe>
                     
-                    <!-- KONTINER LIVE EDITOR BARU -->
                     <div id="live-editor-container">
                         <textarea id="live-code-input" placeholder="<!-- Ketik kode HTML/CSS kamu di sini... -->&#10;<h1>Hello World</h1>&#10;<style>h1 { color: #00f2fe; }</style>"></textarea>
                         <iframe id="live-code-output"></iframe>
@@ -612,7 +649,6 @@
         const iframeViewer = document.getElementById('web-viewer');
         const tabButtons = document.querySelectorAll('.btn-tab');
         
-        // Element Live Editor
         const liveEditorContainer = document.getElementById('live-editor-container');
         const liveCodeInput = document.getElementById('live-code-input');
         const liveCodeOutput = document.getElementById('live-code-output');
@@ -637,7 +673,6 @@
             elemenTombol.classList.add('aktif');
         }
 
-        // Fungsi baru untuk menjalankan Live Editor
         function bukaLiveEditor(elemenTombol) {
             iframeViewer.style.display = "none";
             liveEditorContainer.style.display = "flex";
@@ -645,11 +680,9 @@
             tabButtons.forEach(btn => btn.classList.remove('aktif'));
             elemenTombol.classList.add('aktif');
             
-            // Render tulisan awal
             renderLiveCode();
         }
 
-        // Render input ke iframe Live Code
         function renderLiveCode() {
             const outputElement = liveCodeOutput.contentWindow.document;
             outputElement.open();
@@ -657,7 +690,6 @@
             outputElement.close();
         }
 
-        // Event saat mengetik di textarea
         liveCodeInput.addEventListener('input', renderLiveCode);
     </script>
 </body>
