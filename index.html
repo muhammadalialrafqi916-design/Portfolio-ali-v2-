@@ -744,16 +744,18 @@
     </div>
 
     <script>
-        // Logika Pengubah Mode Gelap / Terang (Light & Dark Mode Toggle)
-        const btnTheme = document.getElementById('btn-theme');
-        btnTheme.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            if (document.body.classList.contains('light-mode')) {
-                btnTheme.textContent = '☀️'; // Berubah jadi Matahari di Mode Terang
-            } else {
-                btnTheme.textContent = '🌙'; // Berubah jadi Bulan di Mode Gelap
-            }
-        });
+        // ngubah gelap Terang//
+const btnTheme = document.getElementById('btn-theme');
+btnTheme.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+    
+    if (document.body.classList.contains('light-mode')) {
+        btnTheme.textContent = '🌙'; // Saat masuk Mode Terang -> Tampilkan Ikon Bulan
+    } else {
+        btnTheme.textContent = '☀️'; // Saat masuk Mode Gelap -> Tampilkan Ikon Matahari
+    }
+});
+
 
         // Logika Dropdown Menu Navigasi
         const tombolMenu = document.querySelector('.nav-menu');
