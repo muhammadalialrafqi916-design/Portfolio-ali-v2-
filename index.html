@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Interaktif | Muhammad Ali Al Rafqi</title>
     
-  <link rel="icon" type="image/png" href="Gemini_Generated_Image_xlxpc8xlxpc8xlxp (1).png">
+    <link rel="icon" type="image/png" href="Gemini_Generated_Image_xlxpc8xlxpc8xlxp (1).png">
     <style>
         /* --- RESET & FONT --- */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
@@ -18,7 +18,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- BACKGROUND ANIMASI DINAMIS --- */
+        /* --- BACKGROUND ANIMASI DINAMIS (MODE GELAP - DEFAULT) --- */
         body {
             background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             background-size: 400% 400%;
@@ -26,12 +26,125 @@
             color: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
+            transition: background 0.5s ease, color 0.5s ease;
         }
 
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        /* --- STYLING MODE TERANG --- */
+        body.light-mode {
+            background: linear-gradient(135deg, #e0c3fc, #8ec5fc, #e2e8f0);
+            background-size: 400% 400%;
+            color: #1e293b;
+        }
+
+        body.light-mode .top-nav {
+            background: rgba(255, 255, 255, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .nav-menu,
+        body.light-mode .theme-btn {
+            color: #1e293b;
+        }
+
+        body.light-mode .menu-tersembunyi {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        body.light-mode .menu-item {
+            color: #1e293b;
+        }
+
+        body.light-mode .menu-item:hover {
+            background: rgba(0, 0, 0, 0.08);
+            color: #0284c7;
+        }
+
+        body.light-mode header h1 {
+            color: #0f172a;
+            text-shadow: 2px 4px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        body.light-mode .typewriter {
+            color: #15803d;
+        }
+
+        body.light-mode .section-card {
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+
+        body.light-mode h2 {
+            color: #0284c7;
+            border-bottom: 2px dashed rgba(0, 0, 0, 0.2);
+        }
+
+        body.light-mode .btn-interaktif {
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(0, 0, 0, 0.2);
+            color: #1e293b;
+        }
+
+        body.light-mode .btn-interaktif:hover {
+            background: #1e293b;
+            color: #ffffff;
+        }
+
+        body.light-mode .form-group input, 
+        body.light-mode .form-group textarea {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            color: #0f172a;
+        }
+
+        body.light-mode .form-group input::placeholder, 
+        body.light-mode .form-group textarea::placeholder {
+            color: #64748b;
+        }
+
+        body.light-mode .info-card {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #0f172a;
+        }
+
+        body.light-mode .info-card .title {
+            color: #16a34a;
+        }
+
+        body.light-mode .video-card-bottom {
+            background: rgba(255, 255, 255, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        body.light-mode .video-desc-text {
+            color: #0f172a;
+        }
+
+        body.light-mode footer {
+            background: rgba(255, 255, 255, 0.4);
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-mode .footer-title {
+            color: #475569;
+        }
+
+        body.light-mode .footer-creator {
+            color: #0f172a;
+        }
+
+        body.light-mode .footer-message {
+            color: #334155;
         }
 
         /* --- ELEMEN SHAPES MENGAMBANG --- */
@@ -67,6 +180,7 @@
             margin: 10px 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
         }
 
         .nav-brand {
@@ -80,6 +194,33 @@
             gap: 10px;
         }
 
+        /* WADAH TOMBOL DI SEBALAH KANAN NAVBAR */
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* TOMBOL MODE GELAP / TERANG */
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .theme-btn:hover {
+            transform: scale(1.15) rotate(15deg);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
         .nav-menu {
             background: transparent;
             border: none;
@@ -87,6 +228,8 @@
             font-size: 1.8rem;
             cursor: pointer;
             transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
         }
         .nav-menu:hover { transform: rotate(90deg) scale(1.1); }
 
@@ -161,7 +304,7 @@
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
         }
         .section-card:hover {
             transform: translateY(-5px);
@@ -188,6 +331,7 @@
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 600;
+            color: white;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
@@ -444,8 +588,14 @@
 
     <nav class="top-nav">
         <div class="nav-brand"><span>🖼️</span> Ali Rafqi</div>
-        <button class="nav-menu">☰</button>
+        
+        <!-- KONTROL UTAMA: TOMBOL GELAP/TERANG & MENU GARIS 3 -->
+        <div class="nav-actions">
+            <button id="btn-theme" class="theme-btn" title="Ubah Mode Gelap/Terang">🌙</button>
+            <button class="nav-menu" title="Menu Navigasi">☰</button>
+        </div>
     </nav>
+
     <div id="kotak-menu" class="menu-tersembunyi">
         <a href="#tentang" class="menu-item">Tentang Saya</a>
         <a href="#keahlian" class="menu-item">Keahlian Dasar</a>
@@ -498,7 +648,7 @@
 
         <div class="section-card hidden-scroll" id="kontak">
             <h2>terhubung dan contact?</h2>
-            <p style="margin-bottom: 20px; color: #ccc;">Mau kolaborasi, ngobrol, atau just say hi? Gas aja!</p>
+            <p style="margin-bottom: 20px; color: currentColor;">Mau kolaborasi, ngobrol, atau just say hi? Gas aja!</p>
             
             <form action="https://formsubmit.co/muhammadali.alrafqi916@gmail.com" method="POST" target="_blank" onsubmit="alert('Pesan sedang diproses! 🚀');">
                 <input type="hidden" name="_captcha" value="true">
@@ -525,8 +675,8 @@
                 </div>
                 <div class="info-card">
                     <span class="title">🕒 Response</span>
-                    <strong>< 24 jam</strong>
-                    </div>
+                    <strong>&lt; 24 jam</strong>
+                </div>
                 
                 <div class="info-card">
                     <span class="title">​​📁 proyek_pengembangan_web​📋</span>
@@ -567,6 +717,7 @@
         <p class="footer-message">Saya baru belajar membuat website sederhana serta belajar UI/UX design. Saya akan belajar lebih giat untuk bisa mencapai cita-cita. 
         @ali</p>
     </footer>
+
     <div id="modal-proyek-web" class="modal-overlay">
         <div class="modal-container">
             <div class="modal-header">
@@ -593,7 +744,18 @@
     </div>
 
     <script>
-        
+        // Logika Pengubah Mode Gelap / Terang (Light & Dark Mode Toggle)
+        const btnTheme = document.getElementById('btn-theme');
+        btnTheme.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                btnTheme.textContent = '☀️'; // Berubah jadi Matahari di Mode Terang
+            } else {
+                btnTheme.textContent = '🌙'; // Berubah jadi Bulan di Mode Gelap
+            }
+        });
+
+        // Logika Dropdown Menu Navigasi
         const tombolMenu = document.querySelector('.nav-menu');
         const kotakMenu = document.getElementById('kotak-menu');
 
