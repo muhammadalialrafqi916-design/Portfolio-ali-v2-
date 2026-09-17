@@ -55,7 +55,7 @@ Dibangun dengan pendekatan modern, responsif, dan berfokus pada pengalaman pengg
 Tambahkan screenshot website Anda di sini agar pengunjung GitHub langsung mendapat gambaran visual.
 
 ```md
-![Preview Portfolio](./public/preview.png)
+![Preview Portfolio](screenshot (4).png)
 ```
 
 ## Menjalankan Secara Lokal
