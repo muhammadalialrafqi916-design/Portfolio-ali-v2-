@@ -421,7 +421,25 @@
             vertical-align: middle;
         }
 
-        /* --- KARTU VIDEO --- */
+        
+        .converter-video-box {
+            margin-top: 12px;
+            width: 100%;
+            max-height: 140px; 
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            background: #000000;
+        }
+        .converter-video-box video {
+            width: 100%;
+            height: 100%;
+            max-height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+
+        
         .video-grid-bottom {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -462,7 +480,7 @@
             color: #0f172a;
         }
 
-        /* --- MODAL POP-UP --- */
+        
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(8px);
@@ -676,10 +694,13 @@
                         <strong>Pekanbaru, ID</strong>
                     </div>
 
-                    <!-- KARTU FILE CONVERTER SAMA DENGAN TOMBOL PROYEK WEB (GANTI RESPONSE < 24 JAM) -->
                     <div class="info-card" id="file-converter-card">
                         <span class="title">🔄 File Converter <span class="badge-new">NEW</span></span>
                         <a href="https://alidev-fileconvert.vercel.app/" target="_blank" class="btn-link-biru">klik disini</a>
+                        
+                        <div class="converter-video-box">
+                            <video src="file_converter_demo.mp4" controls preload="metadata"></video>
+                        </div>
                     </div>
                     
                     <div class="info-card">
@@ -706,7 +727,7 @@
 
                 <div class="video-card-bottom">
                     <div class="video-thumb-box">
-                        <img src="JavaScript.png"alt="SampulHTML" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="JavaScript.png" alt="SampulHTML" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="video-desc-box">
                         <p class="video-desc-text">penjelasan ringkas tentang JavaScript</p>
